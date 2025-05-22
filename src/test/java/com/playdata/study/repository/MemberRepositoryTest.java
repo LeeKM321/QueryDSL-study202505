@@ -186,6 +186,20 @@ class MemberRepositoryTest {
 
     }
 
+    @Test
+    @DisplayName("custom 객체 메서드 확인")
+    void queryDslCustom() {
+        // given
+        String name = "member4";
+
+        // when
+        List<Member> byName = memberRepository.findByName(name);
+
+        // then
+        assertEquals(1, byName.size());
+        assertEquals("teamB", byName.get(0).getTeam().getName());
+    }
+
 }
 
 
