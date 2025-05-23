@@ -7,6 +7,7 @@ import com.playdata.study.entity.Idol;
 import com.playdata.study.entity.QAlbum;
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.Tuple;
+import com.querydsl.core.types.OrderSpecifier;
 import com.querydsl.jpa.JPAExpressions;
 import com.querydsl.jpa.JPQLQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
@@ -157,6 +158,40 @@ class QueryDslDynamicTest {
 
         // then
         result.forEach(System.out::println);
+    }
+
+    @Test
+    @DisplayName("동적 정렬을 사용한 아이돌 조회")
+    void dynamicTest3() {
+        // given
+        String sortBy = "idolName"; // 나이, 이름, 그룹명
+        boolean ascending = true; // 오름차(true), 내림차(false)
+
+        // when
+        OrderSpecifier<?> specifier = null;
+
+        // 동적 정렬 조건 생성
+        switch (sortBy) {
+            case "age":
+                specifier = ascending ? idol.age.asc() : idol.age.desc();
+                break;
+
+            case "idolName":
+                specifier = ascending ? idol.idolName.asc() : idol.idolName.desc();
+                break;
+
+            case "groupName":
+                specifier = ascending ? idol.group.groupName.asc() : idol.group.groupName.desc();
+                break;
+        }
+
+        List<Idol> idolList = factory
+                .selectFrom(idol)
+                .orderBy(specifier)
+                .fetch();
+
+        // then
+        idolList.forEach(System.out::println);
     }
 
 
