@@ -39,10 +39,10 @@ class QueryDslBasicTest {
         groupRepository.save(leSserafim);
         groupRepository.save(ive);
 
-        Idol idol1 = new Idol("김채원", 24, leSserafim);
-        Idol idol2 = new Idol("사쿠라", 26, leSserafim);
-        Idol idol3 = new Idol("가을", 22, ive);
-        Idol idol4 = new Idol("리즈", 20, ive);
+        Idol idol1 = new Idol("김채원", 24, "여", leSserafim);
+        Idol idol2 = new Idol("사쿠라", 26, "여", leSserafim);
+        Idol idol3 = new Idol("가을", 22, "여", ive);
+        Idol idol4 = new Idol("리즈", 20, "여", ive);
 
         idolRepository.save(idol1);
         idolRepository.save(idol2);
