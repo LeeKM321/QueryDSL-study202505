@@ -222,6 +222,10 @@ class QueryDslSubqueryTest {
         idolList.forEach(System.out::println);
     }
 
+    // JPAExpressions는 from절을 제외하고 select와 where절에서 사용이 가능
+    // JPQL도 마찬가지로 from절 서브쿼리 사용이 불가.
+    // JPA는 반드시 FROM절에 엔터티가 오는 것을 강제.
+    // -> Native SQL을 작성하던지, JdbcTemplate 이용, 따로따로 두 번 조회도 사용.
 
 
 }
